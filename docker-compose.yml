@@ -14,17 +14,17 @@ services:
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
 
-  ngrok:
-    image: wernight/ngrok
-    container_name: ngrok
-    ports: [ "4040:4040" ]
-    command: ngrok http app:8080
+#  ngrok:
+#    image: wernight/ngrok
+#    container_name: ngrok
+#    ports: [ "4040:4040" ]
+#    command: ngrok http app:8080
 
   app:
     depends_on:
       - redis
       - postgres
-      - ngrok
+#      - ngrok
     volumes:
       - .:/app
     build:

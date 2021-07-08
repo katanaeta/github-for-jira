@@ -39,7 +39,6 @@ export default (robot: Application) => {
     });
 
     if (connectionsOk) {
-      deepcheckLogger.info('Successfully called /deepcheck');
       return res.status(200).send('OK');
     } else {
       deepcheckLogger.error('Error: failed to call /deepcheck');
@@ -51,9 +50,7 @@ export default (robot: Application) => {
   /**
    * /healtcheck endpoint to check that the app started properly
    */
-  const healthcheckLogger = bunyan.createLogger({ name: 'healthcheck' });
   app.get('/healthcheck', elapsedTimeMetrics, async (_, res: Response) => {
     res.status(200).send('OK');
-    healthcheckLogger.info('Successfully called /healthcheck.');
   });
 };

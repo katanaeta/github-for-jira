@@ -14,12 +14,15 @@ const instrumentRequests = (octokit: GitHubAPI, log: Logger) => {
     try {
       const response = await request(options);
       responseStatus = response.status;
+      log.info(`Response from GitHub: ${JSON.stringify(response)}`);
 
       return response;
     } catch (error) {
       if (error.responseCode) {
         responseStatus = error.responseCode;
       }
+
+      log.error(`Error response from to GitHub: ${JSON.stringify(error)}`);
 
       throw error;
     } finally {
