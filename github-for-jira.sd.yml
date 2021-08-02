@@ -81,7 +81,7 @@ scaling:
       EvaluationPeriods: 3
       Threshold:
         Lower: 30
-        Upper: 85
+        Upper: 80
       Metrics:
         - Expression: "MAX([cpuUsage, memoryUsage])"
           Id: "combinedCpuRam"
@@ -198,9 +198,9 @@ environmentOverrides:
           EvaluationPeriods: 3
           Threshold:
             Lower: 30
-            Upper: 85
+            Upper: 80
           Metrics:
-            - Expression: "MAX([(responseTime/3)*100, cpuUsage, memoryUsage])"
+            - Expression: "MAX([(responseTime/2)*100, cpuUsage, memoryUsage])"
               Id: "combinedCpuRamAndLatency"
               Label: "Scaling based on CPU and Memory consumption or response time"
             - MetricStat:
