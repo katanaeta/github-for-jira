@@ -105,6 +105,9 @@ scaling:
           Id: memoryUsage
           ReturnData: false
 
+tags:
+  brahmos: enabled
+
 alarms:
   overrides:
     MemoryConsumptionAlert:
