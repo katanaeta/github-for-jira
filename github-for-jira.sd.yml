@@ -78,7 +78,7 @@ scaling:
   max: 5
   metrics: &CpuMemScalingRules
     complexScalingRule:
-      EvaluationPeriods: 3
+      EvaluationPeriods: 1
       Threshold:
         Lower: 30
         Upper: 80
@@ -91,8 +91,8 @@ scaling:
               # Dimensions can be ignored here due to defaulting
               MetricName: CPUUtilization
               Namespace: AWS/EC2
-            Period: 60
-            Stat: Average
+            Period: 300
+            Stat: Maximum
           Id: cpuUsage
           ReturnData: false
         - MetricStat:
@@ -100,8 +100,8 @@ scaling:
               # Dimensions can be ignored here due to defaulting
               MetricName: MemoryUtilization
               Namespace: System/Linux
-            Period: 60
-            Stat: Average
+            Period: 300
+            Stat: Maximum
           Id: memoryUsage
           ReturnData: false
 
@@ -195,7 +195,7 @@ environmentOverrides:
       max: 5
       metrics: &CpuMemAlbScalingRules
         complexScalingRule:
-          EvaluationPeriods: 3
+          EvaluationPeriods: 1
           Threshold:
             Lower: 30
             Upper: 80
@@ -207,16 +207,16 @@ environmentOverrides:
                 Metric:
                   MetricName: CPUUtilization
                   Namespace: AWS/EC2
-                Period: 60
-                Stat: Average
+                Period: 300
+                Stat: Maximum
               Id: cpuUsage
               ReturnData: false
             - MetricStat:
                 Metric:
                   MetricName: MemoryUtilization
                   Namespace: System/Linux
-                Period: 60
-                Stat: Average
+                Period: 300
+                Stat: Maximum
               Id: memoryUsage
               ReturnData: false
             - MetricStat:
@@ -228,8 +228,8 @@ environmentOverrides:
                       Value: { "Fn::GetAtt": [ "ALBTargetGroup", "TargetGroupFullName" ] }
                   MetricName: TargetResponseTime
                   Namespace: AWS/ApplicationELB
-                Period: 60
-                Stat: Average
+                Period: 300
+                Stat: Maximum
               Id: responseTime
               ReturnData: false
     alarms:
